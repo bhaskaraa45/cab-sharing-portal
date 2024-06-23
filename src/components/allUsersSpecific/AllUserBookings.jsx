@@ -94,9 +94,10 @@ const AllUserBookings = () => {
 
     try {
       const response = await axios.get(apiURL, {
-        headers: {
-          Authorization: authToken,
-        },
+        // headers: {
+        //   Authorization: authToken,
+        // },
+        withCredentials:true
       });
       setFilteredBookings(response.data);
       setIsLoading(false);  
@@ -124,9 +125,10 @@ const AllUserBookings = () => {
     }
     await axios
       .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/me`, {
-        headers: {
-          Authorization: authToken,
-        },
+        // headers: {
+        //   Authorization: authToken,
+        // },
+        withCredentials: true,
       })
       .then((data) => {
         if (
@@ -198,9 +200,10 @@ const AllUserBookings = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/me/requests`,
         {
-          headers: {
-            Authorization: authToken,
-          },
+          // headers: {
+          //   Authorization: authToken,
+          // },
+          withCredentials: true,
         }
       )
       setFilteredBookings(response.data);

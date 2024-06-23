@@ -149,6 +149,7 @@ export function NewBookingDialog({ fetchUserBookings, username, email }) {
         headers: {
           Authorization: authToken,
         },
+        withCredentials: true,
       })
       .then((data) => {
         if (
@@ -249,6 +250,7 @@ export function NewBookingDialog({ fetchUserBookings, username, email }) {
             Authorization: authToken,
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       )
       .then(() => {
@@ -292,6 +294,7 @@ export function NewBookingDialog({ fetchUserBookings, username, email }) {
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then((res) => {

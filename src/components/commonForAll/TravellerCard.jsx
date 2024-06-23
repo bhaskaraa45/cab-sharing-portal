@@ -43,6 +43,7 @@ const TravellerCard = ({
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {

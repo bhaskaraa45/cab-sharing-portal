@@ -36,6 +36,7 @@ const UserBookings = () => {
             Authorization: authToken,
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
       setBookings(res.data.future_bookings);
@@ -58,6 +59,7 @@ const UserBookings = () => {
         headers: {
           Authorization: authToken,
         },
+        withCredentials: true,
       })
       .then((data) => {
         if (

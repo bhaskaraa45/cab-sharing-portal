@@ -87,6 +87,7 @@ const CabShareSmall = ({
             Authorization: authToken,
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
 

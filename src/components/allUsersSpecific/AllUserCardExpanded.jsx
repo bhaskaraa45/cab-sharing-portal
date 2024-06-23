@@ -50,6 +50,7 @@ const AllUserCardExpanded = ({
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then((res) => {
@@ -78,6 +79,7 @@ const AllUserCardExpanded = ({
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {
@@ -143,6 +145,7 @@ const AllUserCardExpanded = ({
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {

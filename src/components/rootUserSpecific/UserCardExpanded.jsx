@@ -32,6 +32,7 @@ const UserCardExpanded = ({ bookingData, fetchUserBookings }) => {
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {
@@ -69,6 +70,7 @@ const UserCardExpanded = ({ bookingData, fetchUserBookings }) => {
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {
@@ -106,6 +108,7 @@ const UserCardExpanded = ({ bookingData, fetchUserBookings }) => {
               Authorization: authToken,
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         )
         .then(() => {

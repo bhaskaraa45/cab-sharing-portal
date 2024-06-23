@@ -7,9 +7,11 @@ import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
 import retrieveAuthToken from "components/utils/retrieveAuthToken";
 import axios from "axios";
-import {  toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import toastError from "components/utils/toastError";
 import logout from "components/utils/logout";
+import { headers } from "../../../next.config";
+import { da } from "date-fns/locale";
 
 function ProcessUser(token) {
   const decoded_token = jwt_decode(token);
@@ -27,23 +29,32 @@ function Login() {
     setLoading(true);
     console.log("Successful Log in");
     //response has profile object and stuff
+    console.log(response.credential)
 
     localStorage.setItem("credential", response.credential);
-    await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/me`, {
-      headers: {
-        Authorization: response.credential,
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL_BASE}/auth/login`,
+      {
+        id_token: response.credential,
       },
-    })
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    )
       .then((data) => {
         ProcessUser(response.credential);
+        console.log(data.headers)
 
-        router.push("/cab-sharing");
+        // router.push("/cab-sharing");
       })
       .catch((err) => {
+        logout(router);
         console.log(err);
         toastError(err.response.data.detail);
-        if (err.response.status == 498){
-          logout(router);
+        if (err.response.status == 498) {
           return;
         }
         toastError("Error logging in");
@@ -51,7 +62,7 @@ function Login() {
     setLoading(false);
   };
   const responseGoogleFailure = (response, details) => {
-    
+
     toast("Error logging in", { type: "error" });
     console.log("Log in UnSuccessful");
   };
@@ -61,7 +72,7 @@ function Login() {
     if (token != null) {
       router.push("/cab-sharing");
     }
-  } , []);
+  }, []);
 
 
   return (
